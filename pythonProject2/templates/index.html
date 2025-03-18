@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            /* Replace gradient with background image */
+            background: url('/static/img.png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Add a semi-transparent overlay to ensure text readability */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #dbeafe;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(59, 89, 152, 0.8);
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: grid;
+            gap: 12px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #34495e;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #2c3e50;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        button {
+            margin-top: 8px;
+            padding: 12px;
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Digital background effect - removed */
+
+        /* Card visualization */
+        .card-visual {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .card-visual::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 65%, rgba(255, 255, 255, 0.2) 75%, transparent 85%);
+            animation: shine 2s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+            100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .card-visual {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Removed digital-background div -->
+
+    <div class="container">
+        <div class="card-visual"></div>
+
+        <header>
+            <img src="/static/logo.png" alt="Fraud Detection Logo" class="logo">
+            <h1>Online Transaction Fraud Detection System</h1>
+        </header>
+
+        <form id="fraudForm" action="/predict" method="post">
+            <label>Step:</label>
+            <input type="number" name="step" step="any" required placeholder="Enter step number">
+
+            <label>Amount:</label>
+            <input type="number" name="amount" step="any" required placeholder="Enter transaction amount">
+
+            <label>Old Balance (Origin):</label>
+            <input type="number" name="oldbalanceOrg" step="any" required placeholder="Enter original old balance">
+
+            <label>New Balance (Origin):</label>
+            <input type="number" name="newbalanceOrg" step="any" required placeholder="Enter original new balance">
+
+            <label>Old Balance (Destination):</label>
+            <input type="number" name="oldbalanceDest" step="any" required placeholder="Enter destination old balance">
+
+            <label>New Balance (Destination):</label>
+            <input type="number" name="newbalanceDest" step="any" required placeholder="Enter destination new balance">
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <p class="error" id="errorMsg"></p>
+    </div>
+
+    <script>
+        document.getElementById("fraudForm").addEventListener("submit", function(event) {
+            let inputs = document.querySelectorAll("input");
+            let errorMsg = document.getElementById("errorMsg");
+            errorMsg.textContent = "";
+
+            for (let input of inputs) {
+                if (input.value < 0) {
+                    event.preventDefault();
+                    errorMsg.textContent = "Values cannot be negative!";
+                    return;
+                }
+            }
+
+            // Add animation effect when form is submitted
+            if (errorMsg.textContent === "") {
+                document.querySelector("button").textContent = "Processing...";
+            }
+        });
+    </script>
+</body>
+</html>

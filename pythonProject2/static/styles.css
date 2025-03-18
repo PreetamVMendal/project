@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Styling */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    text-align: center;
+}
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+body {
+            /* Replace gradient with background image */
+            background: url('/static/img.png') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px; /* Reduced padding for smaller overall size */
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.logo {
+    width: 80px; /* Slightly smaller logo */
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 22px; /* Slightly smaller heading */
+    font-weight: 600;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    padding: 8px; /* Reduced padding */
+    margin: 6px 0; /* Reduced margin */
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 14px; /* Smaller font size */
+}
+
+button {
+    background: #ff6b6b;
+    padding: 10px; /* Reduced padding */
+    border-radius: 6px;
+    font-size: 14px; /* Reduced font size */
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    color: white;
+}
+
+button:hover {
+    background: #d62c2c;
+}
+
+.error {
+    color: yellow;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.result-card {
+    background: white;
+    color: black;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.fraud {
+    color: red;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.non-fraud {
+    color: green;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.back-button {
+    background: #007bff;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 6px;
+    color: white;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    background: #0056b3;
+}
